@@ -1,5 +1,6 @@
 #!/bin/bash
 
+cd "${BASH_SOURCE%/*}"
 then=$(git rev-parse --short HEAD)
 git pull
 now=$(git rev-parse --short HEAD)
