@@ -54,7 +54,8 @@ func append_result(totalViewers int, giniCoeff float32, numberOfStreams int) {
 	now := time.Now()
 	f, _ := os.OpenFile(os.Args[1], os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0660)
 	defer f.Close()
-	result := fmt.Sprintf("%d,%d,%d,%d,%d,%.3f\n", now.Weekday(), now.Hour(), now.Minute(), numberOfStreams, totalViewers, giniCoeff)
+	result := fmt.Sprintf("%d,%d,%d,%d,%d,%d,%d,%.3f\n", now.Minute(), now.Hour(),
+		now.Day(), now.Month(), now.Weekday(), numberOfStreams, totalViewers, giniCoeff)
 	f.WriteString(result)
 }
 
@@ -111,19 +112,16 @@ func get_id() string {
 }
 
 type Stream struct {
-	Id           string   `json:"id"`
-	UserId       string   `json:"user_id"`
-	UserLogin    string   `json:"user_login"`
-	UserName     string   `json:"user_name"`
-	GameId       string   `json:"game_id"`
-	GameName     string   `json:"game_name"`
-	Tags         []string `json:"tags"`
-	Viewer_count int      `json:"viewer_count"`
-	StartedAt    string   `json:"started_at"`
-	Language     string   `json:"language"`
-	ThumbnailUrl string   `json:"thumbnail_url"`
-	TagIds       []string `json:"tag_ids"`
-	IsMature     bool
+	Id           string `json:"id"`
+	UserId       string `json:"user_id"`
+	UserLogin    string `json:"user_login"`
+	UserName     string `json:"user_name"`
+	GameId       string `json:"game_id"`
+	GameName     string `json:"game_name"`
+	StartedAt    string `json:"started_at"`
+	Language     string `json:"language"`
+	ThumbnailUrl string `json:"thumbnail_url"`
+	Viewer_count int    `json:"viewer_count"`
 }
 
 type StreamResult struct {
