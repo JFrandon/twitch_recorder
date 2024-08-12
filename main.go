@@ -129,7 +129,7 @@ type StreamResult struct {
 }
 
 func get_streams(id string) []Stream {
-	url := "https://api.twitch.tv/helix/streams?game_id=" + id + "&type=live"
+	url := "https://api.twitch.tv/helix/streams?game_id=" + id + "&type=live&first=100"
 	fmt.Println(url)
 	resp := authenticated_get(url)
 	body, _ := io.ReadAll(resp.Body)
